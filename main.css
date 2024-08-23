@@ -1,0 +1,101 @@
+:root {
+    --ff: Arial, sans-serif;
+    --p: 18px/22px var(--ff);
+    --p1: 24px/30px var(--ff);
+    --colorbody: #fff;
+    --colormain: #021526;
+    --colorasecond: #03346E;
+    --colorthird: #6EACDA;
+    --coloraccent: #E2E2B6;
+    --shadow: #00000030 0px 0px 10px 0px;
+    --transiton: 0.3s ease-in-out
+  }
+
+body {
+    min-height: 100svh;
+    font: var(--p);
+    background-color: var(--colormain);
+    color: var(--colorbody);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+main {
+  flex: 1;
+  margin-left: 2rem;
+}
+
+header{
+    display: flex;
+    gap: 3rem;
+    margin-left: 2rem;
+}
+
+header > h1{
+  flex: 1;
+}
+
+header > nav{
+  flex: 3;
+  justify-content: left;
+}
+
+nav{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+
+nav > a{
+    color: var(--coloraccent);
+    text-decoration: none;
+    font: var(--p1);
+    flex: 1;
+    max-width: fit-content;
+  }
+
+  nav > a:hover{
+    scale: 1.05;
+    transition: var(--transiton);
+    border: none
+  }
+
+.current-site{
+    border-bottom: var(--colorthird) solid;
+}
+
+.containerOfText > p{
+    max-width: 50%;
+    line-height: 1.5rem;
+}
+
+.containerOfText > p > a{
+    color: var(--colorthird);
+}
+
+footer {
+  background-color: var(--colorasecond);
+  padding: 1rem;
+  display: flex;
+  gap: 8rem;
+}
+
+.footerCategorie{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footerCategorie > a{
+  text-decoration: none;
+  color: white;
+}
+
+.footerCategorie > a:hover{
+  text-decoration: underline;
+}
+
+

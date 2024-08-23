@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="guide.css">
+    </head>
+    <body>
+        <header>
+            <h1>Magic Pwnagotchi guide</h1>
+            <nav>
+                <a href="index.html">Welcome</a>
+                <a href="guide.html" class="current-site">Guide</a>
+                <a href="credits.html">Credits</a>
+            </nav>
+        </header>
+        <main>
+            <div class="guide-part">
+            <h2>Introduction</h2>
+            <h3>What is a Pwnagotchi</h3>
+            <p>
+                Pwnagotchi is an open-source project that combines a Raspberry Pi, 
+                an e-Paper display, 
+                and various scripts to create an autonomous Wi-Fi hacking device. 
+                It leverages artificial intelligence to learn from its environment, 
+                capture Wi-Fi handshakes, and grow more effective over time. As it "learns," 
+                your Pwnagotchi develops its own personality, interacting with you through 
+                its e-Paper display, making the experience both educational and entertaining.
+            </p>
+            <img src="Images/Building Tutorial/PaperCase.jpg" class="guide-image">
+            </div>
+            <div class="guide-part">
+                <h2>How to build one</h2>
+                <h3>Hardware you need</h3>
+                <ul>
+                    <li>A Raspberry Pi Zero W(H) (Heart/Base)</li>
+                    <li>micro-SD card(min. 16GB, better more and min. 100 MB/s, better more)</li>
+                    <li>Micro-USB cable which can transfer data(very important)</li>
+                    <li>Pins (Pi with pre installed pins or solder them our self)</li>
+                    <li>Display (Waveshare V4)</li>
+                    <li>portable power source: Power Bank</li>
+                </ul>
+                <p>
+                    For more in death explanation of the hardware, 
+                    check out the <a href="https://github.com/ThemagicEE/magic-pwnagotchi-guide/blob/main/Pwnagotchi%20guide.md" target="_blank">Markdown guide</a>
+                </p>
+                <h3>Building/Setup Tutorial</h3>
+                <h4>Assemble Pi and Display</h4>
+                <img src="Images/Building Tutorial/PiAndDisplay.jpg" class="guide-image">
+                <p>Now we have to connect them both. You see these "holes" on the display? 
+                    These match perfectly with the pins on our Pi. Just stick them together.</p>
+                <p>
+                    Like this:
+                </p>
+                <img src="Images/Building Tutorial/PiAndDisplayAssambled.jpg" class="guide-image">
+                <p>
+                    You need to push the display all the way down, 
+                    even though it might feel wrong. It has to be fully connected; otherwise, 
+                    you won't get a picture.
+                </p>
+                <p>Like shown on following images:</p>
+                <img src="Images/Building Tutorial/displayAssambleWrong.jpg" class="guide-image">
+                <img src="Images/Building Tutorial/displayAssambleRight.jpg" class="guide-image">
+                <p>
+                    Hardware-wise, you are finished. 
+                </p>
+            </div>
+            <div class="guide-part">
+                <h4>Flashing the Image</h4>
+                <h5>What you need</h5>
+                <p>
+                    Get the the latest image for your Pi here: <br>
+                    <a href="https://github.com/jayofelony/pwnagotchi/releases" target="_blank">Latest Image</a>
+                </p>
+                <p>
+                    If you use a **Raspberry Pi Zero W(H)**, use the **32 bit** version.
+                    For **any other** mentioned above, use the **64 bit** version.
+
+                    To flash the image to the SD card, you need the <a href="https://www.raspberrypi.com/software/" target="_blank"></a>.
+
+                    _Click_ "Choose OS," scroll all the way down, and select "Use Custom." 
+                    Navigate to your Downloads folder and choose the downloaded image. 
+                    In the final step, select your SD card and _click_ "Write".
+
+                    This may take a while, depending on your SD-card and reader.
+                </p>
+                <h4>First Boot</h4>
+                <h5>Starting Oi up</h5>
+                <p>
+                    Insert your SD card into your Pi and grab your micro-USB cable. 
+                    Your Pi has two USB ports, as shown in the image:
+                </p>
+                <img src="Images/Building Tutorial/PowerPortDataPort.jpg" class="guide-image">
+                <p>
+                    Connect your Pi through the Data Port with your PC. <br>
+
+                    Now wait!!! Don't touch your friend, don't disconnect him, just wait. <br>
+
+                    The first boot can take up to 25 minutes Go touch some grass and come back after a while.
+                </p>
+
+                <h5>Establishing Connection to Pi</h5>
+                <h5>Finsing the device</h6>
+                <p>
+                    Open the "Device Manager" by searching for it in your taskbar. And open it.
+                </p>
+                <img src="Images/Building Tutorial/DeviceManagerSearch.png" class="guide-image">
+                <p>
+                    After a while, either a "USB Ethernet/RNDIS" Gadget or a device under "Ports" should appear. 
+                    If an RNDIS Gadget appears, you are good to go; otherwise, we will have to configure it to appear as one.
+                </p>
+                <img src="Images/Building Tutorial/DeviceManager.png" class="guide-image">
+                <p>
+                    To make it into an RNDIS device, you will need to download the RNDIS drivers
+                    <a href="https://modclouddownloadprod.blob.core.windows.net/shared/mod-rndis-driver-windows.zip" target="_blank">here</a>
+
+                    Right-click the device and select "Properties."
+                </p>
+                <img src="Images/Building Tutorial/DeviceManagerProperties.png" class="guide-image">
+                <p>
+                    Then click on "Driver" and select "Update Driver."<br>
+
+                    Click "Browse my computer for drivers."
+                </p>
+                <img src="Images/Building Tutorial/BrowseForDrivers.png" class="guide-image">
+                <p>
+                    Navigate to your **unzipped** drivers folder, and then click "OK."<br>
+                    Your Pi should now be shown as "RNDIS Gadget".<br>
+
+                    Now you're good to go, and we can almost SSH into our Pi.<br>
+                </p>
+                <h6>Configure Network Settings</h6>
+                <p>
+                    To SSH into our Pi, we first need to configure the network settings of the Pi.<br>
+
+                    Open the settings on your PC and navigate to the "Network & internet" tab.<br>
+
+                    Next, click on "Advanced network settings".<br>
+
+                    You should see your RNDIS Gadget there:<br>
+                </p>
+                <img src="Images/Building Tutorial/RndisGadjetInNetworkSettings.png" class="guide-image">
+                <p>
+                    Expand the menu of your main network and click on "Edit".
+                </p>
+                <img src="Images/Building Tutorial/MainNetworkEdit.png" class="guide-image">
+                <p>
+                    In the new menu click on "Sharing" and double click it.
+
+                    Enable internet sharing and choose your pwnagotchi(in my case "Ethernet 2").
+                </p>
+                <img src="Images/Building Tutorial/InternetSharing.png" class="guide-image">
+                <p>
+                    Accept everything and go back to the "Advanced network settings". <br>
+
+                    Expand the menu of your Pi and click on "Edit".
+                </p>
+                <img src="Images/Building Tutorial/RndisGadjetEdit.png" class="guide-image">
+                <p>
+                    In the new menu search for "Internet Protocol Version 4(TCP/IPv4)" and double click it:
+                </p>
+                <img src="Images/Building Tutorial/RNDISPropertiesIPv4.png" class="guide-image">
+                <p>
+                    Now enter following data in the brackets:<br>
+                    Ip address: "10.0.0.1"<br>
+                    Subnet mask: "255.255.255.0"<br>
+
+                    Preferred DNS server: "1.1.1.1"<br>
+                    Alternate DNS server: "8.8.8.8"<br>
+                </p>
+                <img src="Images/Building Tutorial/ConfigureIpv4.png" class="guide-image">
+                <p>
+                    Accept everything, and now we can SSH into our Pi.
+                </p>
+                <p>
+                    Important!!!<br>
+                    If you reconnect your Pi to your PC, 
+                    you will have to disable network sharing and enable it again and 
+                    you have to repeat the above shown steps.
+                </p>
+                <h6>SSH into the Pi and change the password</h6>
+                <p>
+                    Open up "CMD" by searching for "Command Prompt" in the taskbar:
+                </p>
+                <img src="Images/Building Tutorial/SearchForCMD.png" class="guide-image">
+                <p>
+                    Open it up.<br>
+                    Type "ssh pi@10.0.0.2" and click enter.<br><br>
+
+                    The password is "raspberry".<br>
+
+                    Now we have to change the password of our pi.<br>
+                    Type "passwd" and click enter to change the password for SSH excise. <br>
+                </p>
+                <h6>Basic Configuration</h6>
+                <p>
+                    Run this command "sudo pwnagotchi --wizard" to setup a basic config-file.<br>
+                    You will setup following things with this command:
+                    <ul>
+                        <li>the name for your pwnagotchi</li>
+                        <li>whitelist of networks(networks to ignore(like your home network))</li>
+                        <li>you can find the information needed for this in the properties of your home network.</li>
+                        <li>Enable or disable BT-tethering(disable it for now I will cover this later on)</li>
+                        <li>Enable the display and choose the color of it</li>
+                    </ul>
+                    <br><br>
+                    The display of your Pi should display something after a short while.
+                </p>
+                <h6>Edit Config-File</h6>
+                <p>
+                    Run the this command: "sudo nano /etc/pwnagotchi/config.toml".<br>
+
+                    A file editor should open and it should look like this:
+
+                </p>
+                <img src="Images/Building Tutorial/BasicConfig.png" class="guide-image">
+                <p>
+                    main.plugins.auto-update.enabled = true<br>
+                    main.plugins.auto-update.install = true<br>
+                    main.plugins.auto-update.interval = 1<br>
+
+                    bettercap.handshakes = "/handshakes"<br>
+                </p>
+                <img src="Images/Building Tutorial/BasicConfigAdvanced.png" class="guide-image">
+                <p>
+                    Now click CTRL + S to save the changes and then click CTRL + X to exit the editor.<br>
+
+                    These changes enable auto update and change the location of the captures handshakes to access them easily. <br>
+
+                    Restart your pwnagotchi by running this command: pwnkill<br>
+
+                    Your Pi is now ready for use just plug a power bank into the power-port and run around with it.
+                    (Only use on networks you are allowed to)<br>
+                </p>
+            </div>
+        </main>   
+        <footer>
+            <div class="footerCategorie">
+                <h4>Credits</h3>
+                <a href="https://github.com/evilsocket/pwnagotchi" target="_blank">Origial Project</a>
+                <a href="https://github.com/jayofelony/pwnagotchi" target="_blank">Up to Date Fork</a>
+                <a href="https://discord.gg/2GsfP5XSNt" target="_blank">Community Discord</a>
+            </div>
+            <div class="footerCategorie">
+                <h4>Legal Things</h3>
+                <a href="#" target="_blank">coming</a>
+                <a href="#" target="_blank">coming</a>
+                <a href="#" target="_blank">coming</a>
+            </div>
+            <div class="footerCategorie">
+                <h4>Coded by ThemagicEE</h3>
+                <a href="https://github.com/ThemagicEE" target="_blank">Github</a>
+                <a>Discord: ThemagicEE</a>
+                <a href="" target="_blank">idk</a>
+            </div>
+        </footer>
+    </body>
+</html>
